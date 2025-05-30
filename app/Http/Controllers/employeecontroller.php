@@ -27,13 +27,13 @@ class employeecontroller extends Controller
     }
 
     public function edit(int $id){
-        $employees = employee::find(&id);
-        return view ('employee.edit', compact('employees'))
+        $employees = employee::find($id);
+        return view ('employee.edit', compact('employees'));
     }
 
     public function update(Request $request, int $id){{
-        $request->validate({
-        });
+        $request->validate([
+        ]);
         employee::findOrFail($id)->update($request->all());
         return redirect ()->back->with('status','Employee Updated Successfully!');
         }
@@ -42,7 +42,7 @@ class employeecontroller extends Controller
     public function destroy(int$id){
         $employees = employee::findOrFail($id);
         $employees->delete();
-        return redirect ()->back()->with('status','Employee Deleted')
+        return redirect ()->back()->with('status','Employee Deleted');
         }
 
 }
